@@ -3,10 +3,8 @@ package mk.ukim.dorms.service.impl;
 import lombok.AllArgsConstructor;
 import mk.ukim.dorms.dto.StudentDTO;
 import mk.ukim.dorms.mapper.StudentMapper;
-import mk.ukim.dorms.model.Dorms;
 import mk.ukim.dorms.model.Student;
 import mk.ukim.dorms.model.exceptions.ResourceNotFoundException;
-import mk.ukim.dorms.repository.DormsRepository;
 import mk.ukim.dorms.repository.StudentRepository;
 import mk.ukim.dorms.service.StudentService;
 import org.springframework.stereotype.Service;
@@ -19,16 +17,11 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-    private final DormsRepository dormsRepository;
 
     @Override
     public StudentDTO createStudent(StudentDTO studentDTO) {
         Student student = StudentMapper.mapToStudent(studentDTO);
-
-        Dorms dorm = dormsRepository.findById(studentDTO.getDormId())
-                .orElseThrow(() -> new ResourceNotFoundException("Dorm was not found with id: "
-                        + studentDTO.getDormId()));
-        student.setDorms(dorm);
+        student.setCity(studentDTO.getCity());  // Set city instead of dorm
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDTO(savedStudent);
     }
@@ -56,11 +49,7 @@ public class StudentServiceImpl implements StudentService {
         student.setFirstName(studentDTO.getFirstName());
         student.setLastName(studentDTO.getLastName());
         student.setEmail(studentDTO.getEmail());
-
-        Dorms dorm = dormsRepository.findById(studentDTO.getDormId())
-                .orElseThrow(() -> new ResourceNotFoundException("Dorm was not found with id: "
-                        + studentDTO.getDormId()));
-        student.setDorms(dorm);
+        student.setCity(studentDTO.getCity());  // Set city instead of dorm
 
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDTO(savedStudent);

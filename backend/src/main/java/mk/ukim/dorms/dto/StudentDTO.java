@@ -19,5 +19,5 @@ public class StudentDTO {
 
     private String email;
 
-    private Long dormId;
+    private String city;
 }

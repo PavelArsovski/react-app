@@ -10,7 +10,7 @@ public class StudentMapper {
                 student.getFirstName(),
                 student.getLastName(),
                 student.getEmail(),
-                student.getDorms().getId()
+                student.getCity()
         );
     }
 

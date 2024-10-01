@@ -1,6 +1,5 @@
 package mk.ukim.dorms.mapper;
 
-
 import mk.ukim.dorms.dto.DormsDTO;
 import mk.ukim.dorms.model.Dorms;
 

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { listDorms } from "../services/DormsService";
 import { updateStudent, createStudent, getStudentById } from "../services/StudentService";
 
 const useStudentComponentHook = () => {
@@ -9,30 +8,16 @@ const useStudentComponentHook = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
-  const [dormId, setDormId] = useState("");
-  const [dorms, setDorms] = useState([]);
+  const [city, setCity] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const fetchDorms = async () => {
-    try {
-      const response = await listDorms();
-      setDorms(response.data);
-    } catch (error) {
-      console.error("Error fetching dorms:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchDorms();
-  }, []);
 
   const saveOrUpdateStudent = async (e) => {
     e.preventDefault();
 
-    const student = { firstName, lastName, email, dormId };
+    const student = { firstName, lastName, email, city };
 
-    if (firstName && lastName && email) {
+    if (firstName && lastName && email && city) {
       try {
         if (id) {
           await updateStudent(id, student);
@@ -59,7 +44,7 @@ const useStudentComponentHook = () => {
       setFirstName(student.firstName);
       setLastName(student.lastName);
       setEmail(student.email);
-      setDormId(student.dormId);
+      setCity(student.city); 
     } catch (error) {
       toast.error("Error fetching student data. Please try again.");
       console.error("Error fetching student data:", error);
@@ -82,9 +67,8 @@ const useStudentComponentHook = () => {
     setLastName,
     email,
     setEmail,
-    dormId,
-    setDormId,
-    dorms,
+    city, 
+    setCity,  
     saveOrUpdateStudent,
     title,
   };

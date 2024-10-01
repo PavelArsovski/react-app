@@ -27,7 +27,6 @@ public class Student {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id")
-    private Dorms dorms;
+    @Column(name = "city")
+    private String city;
 }

@@ -2,12 +2,11 @@ import ButtonLink from "./ButtonLink";
 import useListStudentComponentHook from "../hooks/useListStudentComponentHook";
 
 const ListStudentComponent = () => {
-  const { students, getDormName, updateStudent, deleteStudentById } =
-    useListStudentComponentHook();
+  const { students, updateStudent, deleteStudentById } = useListStudentComponentHook();
 
   return (
     <div className="container">
-      <h2 className="text-center my-3">List of Students in Dorms</h2>
+      <h2 className="text-center my-3">List of Students</h2>
       <ButtonLink text="Add Student" toAction="/add-student" />
       <table className="table table-striped">
         <thead>
@@ -15,7 +14,7 @@ const ListStudentComponent = () => {
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
             <th scope="col">Email</th>
-            <th scope="col">Dorm</th>
+            <th scope="col">City</th>
             <th scope="col">Action #1</th>
             <th scope="col">Action #2</th>
           </tr>
@@ -27,7 +26,7 @@ const ListStudentComponent = () => {
                 <td>{item.firstName}</td>
                 <td>{item.lastName}</td>
                 <td>{item.email}</td>
-                <td>{getDormName(item.dormId)}</td>
+                <td>{item.city}</td>
                 <td>
                   <button
                     className="btn btn-outline-info"

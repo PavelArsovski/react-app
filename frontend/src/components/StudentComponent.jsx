@@ -9,9 +9,8 @@ const StudentComponent = () => {
     setLastName,
     email,
     setEmail,
-    dormId, 
-    setDormId, 
-    dorms, 
+    city,
+    setCity, 
     saveOrUpdateStudent,
     title,
   } = useStudentComponentHook();
@@ -33,6 +32,7 @@ const StudentComponent = () => {
                   name="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group mb-2">
@@ -44,6 +44,7 @@ const StudentComponent = () => {
                   name="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group mb-2">
@@ -55,24 +56,20 @@ const StudentComponent = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group mb-2">
-                <label className="form-label">Select Dorm: </label> 
-                <select
-                  className="form-select"
-                  value={dormId} 
-                  onChange={(e) => setDormId(e.target.value)} 
-                >
-                  <option value="">Select Dorm</option> 
-                  {dorms.map((item) => {
-                    return (
-                      <option key={item.id} value={item.id}>
-                        {item.dormName} 
-                      </option>
-                    );
-                  })}
-                </select>
+                <label className="form-label">City: </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Enter City"
+                  name="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                />
               </div>
               <button
                 className="btn btn-outline-success"

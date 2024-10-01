@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 
 const HeaderComponent = () => {
+  const handleLogout = () => {
+    console.log("User logged out");
+  };
+
   return (
     <div>
       <header>
@@ -27,6 +31,12 @@ const HeaderComponent = () => {
               </li>
             </ul>
           </div>
+          <button
+            className="btn btn-outline-light ms-auto"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </nav>
       </header>
     </div>
